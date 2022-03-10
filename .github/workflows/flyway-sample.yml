@@ -26,12 +26,9 @@ on:
           - test1
           - test2
       dir:
-        description: 'Flywayコマンド'
-        type: 'choice'
-        required: true
-        options:
-          - 'migration,seed'
-          - 'migration,seed,testdata'
+        description: 'migrate testdata'
+        type: 'boolean'
+        default: false
 
 jobs:
   build:
