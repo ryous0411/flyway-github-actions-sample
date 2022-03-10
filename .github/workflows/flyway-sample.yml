@@ -42,4 +42,5 @@ jobs:
     - name: print dir
       run: |
         echo "${{github.event.inputs.dir}}"
+        echo "${{github.event.inputs.branch}}"
         echo "${{github.ref}}"
