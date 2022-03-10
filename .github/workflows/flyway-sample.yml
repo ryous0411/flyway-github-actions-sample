@@ -30,7 +30,8 @@ on:
         type: 'choice'
         required: true
         options:
-          - 'filesystem:./database/${{github.event.inputs.database}}/migration'
+          - 'migration,seed'
+          - 'migration,seed,testdata'
 
 jobs:
   build:
