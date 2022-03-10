@@ -39,8 +39,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: print dir
-      run: |
-        echo "${{github.event.inputs.dir}}"
-        echo "${{github.event.inputs.branch}}"
-        echo "${{github.ref}}"
+      - uses: actions/checkout@v2
+
+        - name: Set output
+          id: vars
+          run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+
+        - name: Check output
+          run: echo ${{ steps.vars.outputs.short_ref }}
