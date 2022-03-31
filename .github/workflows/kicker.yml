@@ -1,0 +1,13 @@
+name: Call a reusable workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-workflow:
+    uses: kinto-dev/goku-backend/.github/workflows/build-app.yml@main
+    with:
+      app-name: "test"
+      sid: "sample"

@@ -1,0 +1,43 @@
+name: build-app
+
+on:
+  workflow_call:
+    inputs:
+      app-name:
+        required: true
+        type: string
+      sid:
+        required: true
+        type: string
+
+env:
+  JAVA_VERSION: "11.0.11"
+
+jobs:
+  cleanup-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 実行中のワークフローのキャンセル
+        uses: rokroskar/workflow-run-cleanup-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: call-test
+        run: |
+          echo ${{ github.event.inputs.app-name }}
+          echo ${{ github.event.inputs.sid }}
+#      - name: チェックアウト
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0
+#
+#      - name: JDKのセットアップ
+#        uses: actions/setup-java@v2
+#        with:
+#          distribution: 'adopt'
+#          java-version: ${{ env.JAVA_VERSION }}
+#          cache: gradle
