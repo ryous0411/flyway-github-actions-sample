@@ -7,7 +7,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: kinto-dev/goku-backend/.github/workflows/build-app.yml@main
+    uses: ryous0411/flyway-github-actions-sample/.github/workflows/build-app.yml@main
     with:
       app-name: "test"
       sid: "sample"
