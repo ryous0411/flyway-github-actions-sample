@@ -12,7 +12,6 @@ on:
     secrets:
       ECR_AWS_REGION:
         required: true
-        type: string
 
 env:
   JAVA_VERSION: "11.0.11"
