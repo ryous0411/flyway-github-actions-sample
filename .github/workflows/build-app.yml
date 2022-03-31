@@ -9,7 +9,8 @@ on:
       sid:
         required: true
         type: string
-      ecr_aws_region:
+    secrets:
+      ECR_AWS_REGION:
         required: true
         type: string
 
