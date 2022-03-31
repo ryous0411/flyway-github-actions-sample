@@ -28,8 +28,8 @@ jobs:
     steps:
       - name: call-test
         run: |
-          echo ${{ github.event.inputs.app-name }}
-          echo ${{ github.event.inputs.sid }}
+          echo ${{ inputs.app-name }}
+          echo ${{ inputs.sid }}
 #      - name: チェックアウト
 #        uses: actions/checkout@v2
 #        with:
