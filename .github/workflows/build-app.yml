@@ -9,6 +9,9 @@ on:
       sid:
         required: true
         type: string
+      ecr_aws_region:
+        required: true
+        type: string
 
 env:
   JAVA_VERSION: "11.0.11"
@@ -36,7 +39,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.ECR_AWS_REGION }}
+          aws-region: ${{ inputs.ecr_aws_region }}
 
 #      - name: チェックアウト
 #        uses: actions/checkout@v2

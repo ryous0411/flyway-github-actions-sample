@@ -11,3 +11,4 @@ jobs:
     with:
       app-name: "test"
       sid: "sample"
+      ecr_aws_region: ${{ secrets.ECR_AWS_REGION }}
