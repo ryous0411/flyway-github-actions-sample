@@ -3,52 +3,16 @@ name: build-app
 on:
   workflow_call:
     inputs:
-      app-name:
+      image-tag:
         required: true
         type: string
-      sid:
-        required: true
-        type: string
-    secrets:
-      ECR_AWS_REGION:
-        required: true
 
 env:
   JAVA_VERSION: "11.0.11"
 
 jobs:
-  cleanup-runs:
+  echo-test:
     runs-on: ubuntu-latest
     steps:
-      - name: 実行中のワークフローのキャンセル
-        uses: rokroskar/workflow-run-cleanup-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: call-test
-        run: |
-          echo ${{ inputs.app-name }}
-          echo ${{ inputs.sid }}
-
-      - name: AWSクレデンシャル
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.ECR_AWS_REGION }}
-
-#      - name: チェックアウト
-#        uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 0
-#
-#      - name: JDKのセットアップ
-#        uses: actions/setup-java@v2
-#        with:
-#          distribution: 'adopt'
-#          java-version: ${{ env.JAVA_VERSION }}
-#          cache: gradle
+      - name: show
+        run: echo ${{ inputs.image-tag }}

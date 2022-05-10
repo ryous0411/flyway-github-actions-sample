@@ -6,10 +6,13 @@ on:
       - main
 
 jobs:
+  now:
+    runs-on: ubuntu-latest
+    steps:
+      - name: time
+        run: echo "TAG=$( date "+%Y%m%d-%H%M%S" )" >> $GITHUB_ENV
+
   call-workflow:
     uses: ryous0411/flyway-github-actions-sample/.github/workflows/build-app.yml@main
     with:
-      app-name: "test"
-      sid: "sample"
-    secrets:
-      ECR_AWS_REGION: ${{ secrets.ECR_AWS_REGION }}
+      image-tag: ${{ env.TAG }}
