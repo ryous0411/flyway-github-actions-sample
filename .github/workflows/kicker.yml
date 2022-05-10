@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: time
-        run: echo "TAG=$( date "+%Y%m%d-%H%M%S" )" >> $GITHUB_ENV
+        id: create-tag
+        run: echo ::set-output name=tag::$( date "+%Y%m%d-%H%M%S" )
 
-  call-workflow:
-    uses: ryous0411/flyway-github-actions-sample/.github/workflows/build-app.yml@main
-    with:
-      image-tag: ${{ env.TAG }}
+    call-workflow:
+      needs: [now]
+      uses: ryous0411/flyway-github-actions-sample/.github/workflows/build-app.yml@main
+      with:
+        image-tag: ${{ needs.steps.create-tag.outputs.tag }}
