@@ -17,6 +17,6 @@ jobs:
       - name: show
         run: echo ${{ inputs.image-tag }}
       - name: show githubRefName
-        run: echo ${GITHUB_REF_NAME}
+        run: echo ${GITHUB_REF_NAME##*/}
       - name: show githubRef
-        run: echo ${GITHUB_REF}
+        run: echo ${GITHUB_REF##*/}
