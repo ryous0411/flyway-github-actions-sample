@@ -16,3 +16,5 @@ jobs:
     steps:
       - name: show
         run: echo ${{ inputs.image-tag }}
+      - name: show branch name
+        run: echo ${GITHUB_REF_NAME}

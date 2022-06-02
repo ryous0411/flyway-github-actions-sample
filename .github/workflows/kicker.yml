@@ -8,6 +8,8 @@ on:
 jobs:
   now:
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.create-tag.outputs.tag }}
     steps:
       - name: time
         id: create-tag
@@ -17,4 +19,4 @@ jobs:
     needs: [now]
     uses: ryous0411/flyway-github-actions-sample/.github/workflows/build-app.yml@main
     with:
-      image-tag: ${{ needs.steps.create-tag.outputs.tag }}
+      image-tag: ${{ needs.now.outputs.tag }}
