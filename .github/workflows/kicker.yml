@@ -5,7 +5,7 @@ on:
     types:
       - closed
     branches:
-      - main
+      - feat/test1
 
 jobs:
   now:
@@ -19,6 +19,6 @@ jobs:
 
   call-workflow:
     needs: [now]
-    uses: ryous0411/flyway-github-actions-sample/.github/workflows/build-app.yml@main
+    uses: ryous0411/flyway-github-actions-sample/.github/workflows/build-app.yml@feat/test1
     with:
       image-tag: ${{ needs.now.outputs.tag }}
