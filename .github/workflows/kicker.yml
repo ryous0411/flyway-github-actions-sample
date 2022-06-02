@@ -2,7 +2,8 @@ name: Call a reusable workflow
 
 on:
   pull_request:
-    - close
+    types:
+      - closed
     branches:
       - main
 
