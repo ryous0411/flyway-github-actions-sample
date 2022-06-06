@@ -1,0 +1,22 @@
+name: build-app
+
+on:
+  workflow_call:
+    inputs:
+      image-tag:
+        required: true
+        type: string
+
+env:
+  JAVA_VERSION: "11.0.11"
+
+jobs:
+  echo-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show
+        run: echo ${{ inputs.image-tag }}
+      - name: show branch
+        run: echo ${GITHUB_REF_NAME}
+      - name: show ref
+        run: echo ${GITHUB_REF}

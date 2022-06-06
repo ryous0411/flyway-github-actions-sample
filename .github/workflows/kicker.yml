@@ -1,0 +1,24 @@
+name: Call a reusable workflow
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  now:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.create-tag.outputs.tag }}
+    steps:
+      - name: time
+        id: create-tag
+        run: echo ::set-output name=tag::$( date "+%Y%m%d-%H%M%S" )
+
+  call-workflow:
+    needs: [now]
+    uses: ryous0411/flyway-github-actions-sample/.github/workflows/build-app.yml@main
+    with:
+      image-tag: ${{ needs.now.outputs.tag }}
